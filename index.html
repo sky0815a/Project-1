@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hanoi Tower</title>
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -31,15 +31,14 @@
         </ul>
         
     </nav>
-    <div class="row">
-        <div class="column1"></div>
-        <div class="column2"></div>
-        <div class="column3"></div>
+    <div class="row"></div>
+    <div class="column1">
+        <div class="disk1" draggable="true"></div>
+        <div class="disk2" draggable="true"></div>
+        <div class="disk3" draggable="true"></div>
     </div>
-    <div class="disk1" draggable="true "></div>
-    <div class="disk3"></div>
-    <div class="disk3"></div>
-</div>
+    <div class="column2"></div>
+    <div class="column3"></div>
 
 </body>
 </html>

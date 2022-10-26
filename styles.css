@@ -60,8 +60,60 @@ body{
     background-color: #ddd;
 }
 
+.disk1 {
+    background-color: pink;
+    width: 150px;
+    position: relative;
+    border-radius: 17.5px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.disk2 {
+    background-color: blue;
+    width: 175px;
+    position: relative;
+    border-radius: 17.5px;
+    height: 35px;
+    cursor: pointer;
+}
+.disk3 {
+    background-color: green;
+    width: 200px;
+    position: relative;
+    border-radius: 17.5px;
+    height: 35px;
+    cursor: pointer;
+}
+
+
+
 /* column == empty */
-.column1, .column2, .column3 {
+.column1 {
+    margin-top: 100px;
+    border: 10px solid white;
+    float: left;
+    height: 700px;
+    width: 33.33%;
+    background-image: url(https://i.imgur.com/RssjO8m.png);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.column2 {
+    margin-top: 100px;
+    border: 10px solid white;
+    float: left;
+    height: 700px;
+    width: 33.33%;
+    background-image: url(https://i.imgur.com/RssjO8m.png);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.column3 {
     margin-top: 100px;
     border: 10px solid white;
     float: left;
@@ -81,13 +133,10 @@ body{
     clear: both;
 }
 
-
-/* .fill == disk */
-.disk1 {
-    background-color: pink;
-    position: relative;
-    height: 40px;
-    width: 350px;
-    cursor: pointer;
+.invisible {
+    display: none;
 }
 
+.hold {
+    border: solid #ccc 4px;
+}
