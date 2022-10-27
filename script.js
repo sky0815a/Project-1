@@ -12,87 +12,16 @@
 // 3. If array.length = initial array.length (that means all the disk has been moved properly) 
 
 
-// const disk1 = document.querySelector(".disk1");
-// const disk1Array = [3,2];
-// const disk2 = document.querySelector(".disk2");
-// const disk2Array = [1];
-// const disk3 = document.querySelector(".disk3");
-// const disk3Array = [];
+const disk1 = document.querySelector(".disk1");
+const disk1Array = [3,2,1];
+const disk2 = document.querySelector(".disk2");
+const disk2Array = [];
+const disk3 = document.querySelector(".disk3");
+const disk3Array = [];
 
-// const column1 = document.querySelector(".column1");
-// const column2 = document.querySelector(".column2");
-// const column3 = document.querySelector(".column3");
-
-// // instead of writing each disk code, how can I change it for what User Click?
-// // Like diskClick = userClick
-// // diskClick.addEventListener('dragstart', dragStart);
-// // diskClick.addEventListener('dragstart', dragEnd);
-
-// disk1.addEventListener('dragstart', dragStart);
-// disk1.addEventListener('dragend', dragEnd);
-
-// disk2.addEventListener('dragstart', dragStart);
-// disk2.addEventListener('dragend', dragEnd);
-
-// disk3.addEventListener('dragstart', dragStart);
-// disk3.addEventListener('dragend', dragEnd);
-
-// /////////////////////////////////////////////////////
-
-
-// // Can I concise the repeated code?
-
-// column1.addEventListener('dragover', dragOver); 
-// column1.addEventListener('dragenter', dragEnter); 
-// column1.addEventListener('dragleave', dragLeave); 
-// column1.addEventListener('drop', dragDrop); 
-
-// column2.addEventListener('dragover', dragOver); 
-// column2.addEventListener('dragenter', dragEnter); 
-// column2.addEventListener('dragleave', dragLeave); 
-// column2.addEventListener('drop', dragDrop); 
-
-// column3.addEventListener('dragover', dragOver); 
-// column3.addEventListener('dragenter', dragEnter); 
-// column3.addEventListener('dragleave', dragLeave); 
-// column3.addEventListener('drop', dragDrop); 
-
-
-// ///////////////////////////////////////////////////////
-
-// // Drag Functions
-// function dragStart() {
-//     this.className += ' hold';
-//     setTimeout(() => (this.className = 'invisible'), 0);
-// };
-
-// function dragEnd() {
-//     this.className = 'disk1';
-// };
-
-// function dragOver(e) {
-//     e.preventDefault();
-// }
-
-// function dragEnter(e) {
-//     e.preventDefault();
-//     console.log('entered')
-// }
-
-// function dragLeave(e) {
-//     e.preventDefault();
-//     console.log('leave')
-
-// }
-
-// function dragDrop(e) {
-//     e.preventDefault(); 
-//     let newDisk1 = document.createElement('disk1');
-//     column2.appendChild(newDisk1);
-// }
-
-///////// Temp Cloed ////////////
-
+const column1 = document.querySelector(".column1");
+const column2 = document.querySelector(".column2");
+const column3 = document.querySelector(".column3");
 
 (function() {
     var dragged, listener;
@@ -104,12 +33,12 @@
     listener = document.addEventListener;
 
     listener("dragstart", (event) => {
-      console.log("start !");
+    //   console.log("start !");
       return dragged = event.target;
     });
 
     listener("dragend", (event) => {
-      return console.log("end !");
+    //   return console.log("end !");
     });
 
     listener("dragover", function(event) {
@@ -117,20 +46,318 @@
     });
 
     listener("drop", (event) => {
-      console.log("drop !");
-      event.preventDefault();
-      if (event.target.className === "column2") {
-        dragged.parentNode.removeChild(dragged);
-        return event.target.appendChild(dragged);
-      }
-      else if (event.target.className === "column3") {
-        dragged.parentNode.removeChild(dragged);
-        return event.target.appendChild(dragged);
-      }
-      else if (event.target.className === "column1") {
-        dragged.parentNode.removeChild(dragged);
-        return event.target.appendChild(dragged);
-      }
-    });
+        // console.log("drop !");
+        event.preventDefault();
 
-  }).call(this);
+//////////////////////////////////////////////////////////////// 
+/////////////// If the Target Column is 2 from 1 ///////////////
+//////////////////////////////////////////////////////////////// 
+
+    // Declare where are we working at
+    const currentTower = dragged.parentNode
+    console.log(currentTower);   
+
+        if (event.target.className === "column2" && currentTower === column1) {
+            // And if disk 1 can be pushed anywhere anytimes (because its the smallest one)
+            if (dragged === disk1) {
+                    disk2Array.push(disk1Array[disk1Array.length -1]);
+                    disk1Array.pop();
+                    console.log(disk1Array);
+                    console.log(disk2Array);
+                    console.log(disk3Array);
+                    dragged.parentNode.removeChild(dragged);
+                    return event.target.prepend(dragged);
+                }
+
+            // And if disk 2 is selected
+            else if (dragged === disk2) {
+                // As long as the last disk is not 1, you can move
+                if (disk2Array[disk2Array.length -1] != 1) {
+                    disk2Array.push(disk1Array[disk1Array.length -1]);
+                    disk1Array.pop();
+                    console.log(disk1Array);
+                    console.log(disk2Array);
+                    console.log(disk3Array);
+                    dragged.parentNode.removeChild(dragged);
+                    return event.target.prepend(dragged);
+                }
+            }
+            // And if disk 3 is selected
+            else if (dragged === disk3) {
+                // You can move disk3 If and Only If the tower is empty.
+                if (!disk2Array.length) {
+                    disk2Array.push(disk1Array[disk1Array.length -1]);
+                    disk1Array.pop();
+                    console.log(disk1Array);
+                    console.log(disk2Array);
+                    console.log(disk3Array);
+                    dragged.parentNode.removeChild(dragged);
+                    return event.target.prepend(dragged);
+                }
+            }
+        }
+//////////////////////////////////////////////////////////////// 
+/////////////// If the Target Column is 3 from 1 ///////////////
+//////////////////////////////////////////////////////////////// 
+
+        if (event.target.className === "column3" && currentTower === column1)  {
+            // And if disk 1 can be pushed anywhere anytimes (because its the smallest one)
+            if (dragged === disk1) {
+                    disk3Array.push(disk1Array[disk1Array.length -1]);
+                    disk1Array.pop();
+                    console.log(disk1Array);
+                    console.log(disk2Array);
+                    console.log(disk3Array);
+                    dragged.parentNode.removeChild(dragged);
+                    return event.target.prepend(dragged);
+                }
+
+            // And if disk 2 is selected
+            else if (dragged === disk2) {
+                // As long as the last disk is not 1, you can move
+                if (disk3Array[disk3Array.length -1] != 1) {
+                    disk3Array.push(disk1Array[disk1Array.length -1]);
+                    disk1Array.pop();
+                    console.log(disk1Array);
+                    console.log(disk2Array);
+                    console.log(disk3Array);
+                    dragged.parentNode.removeChild(dragged);
+                    return event.target.prepend(dragged);
+                }
+            }
+            // And if disk 3 is selected
+            else if (dragged === disk3) {
+                // You can move disk3 If and Only If the tower is empty.
+                if (!disk3Array.length) {
+                    disk3Array.push(disk1Array[disk1Array.length -1]);
+                    disk1Array.pop();
+                    console.log(disk1Array);
+                    console.log(disk2Array);
+                    console.log(disk3Array);
+                    dragged.parentNode.removeChild(dragged);
+                    return event.target.prepend(dragged);
+                }
+            }
+        }
+
+//////////////////////////////////////////////////////////////// 
+/////////////// If the Target Column is 3 from 2 ///////////////
+////////////////////////////////////////////////////////////////
+
+        if (event.target.className === "column3" && currentTower === column2) {
+            // And if disk 1 can be pushed anywhere anytimes (because its the smallest one)
+            if (dragged === disk1) {
+                    disk3Array.push(disk2Array[disk2Array.length -1]);
+                    disk2Array.pop();
+                    console.log(disk1Array);
+                    console.log(disk2Array);
+                    console.log(disk3Array);
+                    dragged.parentNode.removeChild(dragged);
+                    return event.target.prepend(dragged);
+                }
+        
+            // And if disk 2 is selected
+            else if (dragged === disk2) {
+                // As long as the last disk is not 1, you can move
+                if (disk3Array[disk3Array.length -1] != 1) {
+                    disk3Array.push(disk2Array[disk2Array.length -1]);
+                    disk2Array.pop();
+                    console.log(disk1Array);
+                    console.log(disk2Array);
+                    console.log(disk3Array);
+                    dragged.parentNode.removeChild(dragged);
+                    return event.target.prepend(dragged);
+                }
+            }
+            // And if disk 3 is selected
+            else if (dragged === disk3) {
+                // You can move disk3 If and Only If the tower is empty.
+                if (!disk3Array.length) {
+                    disk3Array.push(disk2Array[disk2Array.length -1]);
+                    disk2Array.pop();
+                    console.log(disk1Array);
+                    console.log(disk2Array);
+                    console.log(disk3Array);
+                    dragged.parentNode.removeChild(dragged);
+                    return event.target.prepend(dragged);
+                }
+            }
+        }
+
+//////////////////////////////////////////////////////////////// 
+/////////////// If the Target Column is 1 from 2 ///////////////
+////////////////////////////////////////////////////////////////
+
+        if (event.target.className === "column1" && currentTower === column2) {
+           // And if disk 1 can be pushed anywhere anytimes (because its the smallest one)
+            if (dragged === disk1) {
+                disk1Array.push(disk2Array[disk2Array.length -1]);
+                disk2Array.pop();
+                console.log(disk1Array);
+                console.log(disk2Array);
+                console.log(disk3Array);
+                dragged.parentNode.removeChild(dragged);
+                return event.target.prepend(dragged);
+            }
+
+            // And if disk 2 is selected
+            else if (dragged === disk2) {
+                // As long as the last disk is not 1, you can move
+                if (disk1Array[disk1Array.length -1] != 1) {
+                    disk1Array.push(disk2Array[disk2Array.length -1]);
+                    disk2Array.pop();
+                    console.log(disk1Array);
+                    console.log(disk2Array);
+                    console.log(disk3Array);
+                    dragged.parentNode.removeChild(dragged);
+                    return event.target.prepend(dragged);
+                }
+            }
+            // And if disk 3 is selected
+            else if (dragged === disk3) {
+                // You can move disk3 If and Only If the tower is empty.
+                if (!disk1Array.length) {
+                    disk1Array.push(disk2Array[disk2Array.length -1]);
+                    disk2Array.pop();
+                    console.log(disk1Array);
+                    console.log(disk2Array);
+                    console.log(disk3Array);
+                    dragged.parentNode.removeChild(dragged);
+                    return event.target.prepend(dragged);
+                }
+            }
+        }
+
+//////////////////////////////////////////////////////////////// 
+/////////////// If the Target Column is 3 from 2 ///////////////
+////////////////////////////////////////////////////////////////
+
+        if (event.target.className === "column3" && currentTower === column2) {
+            // And if disk 1 can be pushed anywhere anytimes (because its the smallest one)
+            if (dragged === disk1) {
+                disk3Array.push(disk2Array[disk2Array.length -1]);
+                disk2Array.pop();
+                console.log(disk1Array);
+                console.log(disk2Array);
+                console.log(disk3Array);
+                dragged.parentNode.removeChild(dragged);
+                return event.target.prepend(dragged);
+            }
+
+        // And if disk 2 is selected
+            else if (dragged === disk2) {
+                // As long as the last disk is not 1, you can move
+                if (disk3Array[disk3Array.length -1] != 1) {
+                    disk3Array.push(disk2Array[disk2Array.length -1]);
+                    disk2Array.pop();
+                    console.log(disk1Array);
+                    console.log(disk2Array);
+                    console.log(disk3Array);
+                    dragged.parentNode.removeChild(dragged);
+                    return event.target.prepend(dragged);
+                }
+            }
+            // And if disk 3 is selected
+            else if (dragged === disk3) {
+                // You can move disk3 If and Only If the tower is empty.
+                if (!disk3Array.length) {
+                    disk3Array.push(disk2Array[disk2Array.length -1]);
+                    disk2Array.pop();
+                    console.log(disk1Array);
+                    console.log(disk2Array);
+                    console.log(disk3Array);
+                    dragged.parentNode.removeChild(dragged);
+                    return event.target.prepend(dragged);
+                }
+            }
+        }
+
+//////////////////////////////////////////////////////////////// 
+/////////////// If the Target Column is 1 from 3 ///////////////
+////////////////////////////////////////////////////////////////
+
+        if (event.target.className === "column1" && currentTower === column3) {
+            // And if disk 1 can be pushed anywhere anytimes (because its the smallest one)
+            if (dragged === disk1) {
+                disk1Array.push(disk3Array[disk3Array.length -1]);
+                disk3Array.pop();
+                console.log(disk1Array);
+                console.log(disk2Array);
+                console.log(disk3Array);
+                dragged.parentNode.removeChild(dragged);
+                return event.target.prepend(dragged);
+            }
+
+            // And if disk 2 is selected
+            else if (dragged === disk2) {
+                // As long as the last disk is not 1, you can move
+                if (disk1Array[disk3Array.length -1] != 1) {
+                    disk1Array.push(disk3Array[disk3Array.length -1]);
+                    disk3Array.pop();
+                    console.log(disk1Array);
+                    console.log(disk2Array);
+                    console.log(disk3Array);
+                    dragged.parentNode.removeChild(dragged);
+                    return event.target.prepend(dragged);
+                }
+            }
+            // And if disk 3 is selected
+            else if (dragged === disk3) {
+                // You can move disk3 If and Only If the tower is empty.
+                if (!disk1Array.length) {
+                    disk1Array.push(disk3Array[disk3Array.length -1]);
+                    disk3Array.pop();
+                    console.log(disk1Array);
+                    console.log(disk2Array);
+                    console.log(disk3Array);
+                    dragged.parentNode.removeChild(dragged);
+                    return event.target.prepend(dragged);
+                }
+            }
+        }
+
+//////////////////////////////////////////////////////////////// 
+/////////////// If the Target Column is 2 from 3 ///////////////
+////////////////////////////////////////////////////////////////
+
+
+        if (event.target.className === "column2" && currentTower === column3) {
+            // And if disk 1 can be pushed anywhere anytimes (because its the smallest one)
+            if (dragged === disk1) {
+                disk2Array.push(disk3Array[disk3Array.length -1]);
+                disk3Array.pop();
+                console.log(disk2Array);
+                console.log(disk3Array);
+                dragged.parentNode.removeChild(dragged);
+                return event.target.prepend(dragged);
+            }
+
+            // And if disk 2 is selected
+            else if (dragged === disk2) {
+                // As long as the last disk is not 1, you can move
+                if (disk2Array[disk2Array.length -1] != 1) {
+                    disk2Array.push(disk3Array[disk3Array.length -1]);
+                    disk3Array.pop();
+                    console.log(disk1Array);
+                    console.log(disk2Array);
+                    console.log(disk3Array);
+                    dragged.parentNode.removeChild(dragged);
+                    return event.target.prepend(dragged);
+                }
+            }
+            // And if disk 3 is selected
+            else if (dragged === disk3) {
+                // You can move disk3 If and Only If the tower is empty.
+                if (!disk2Array.length) {
+                disk2Array.push(disk3Array[disk3Array.length -1]);
+                disk3Array.pop();
+                console.log(disk1Array);
+                console.log(disk2Array);
+                console.log(disk3Array);
+                dragged.parentNode.removeChild(dragged);
+                return event.target.prepend(dragged);
+                }
+            }
+        }
+    });
+}).call(this);
