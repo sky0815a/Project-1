@@ -13,9 +13,9 @@
 
 
 const disk1 = document.querySelector(".disk1");
-const disk1Array = [3,2,1];
+const disk1Array = [3,2];
 const disk2 = document.querySelector(".disk2");
-const disk2Array = [];
+const disk2Array = [1];
 const disk3 = document.querySelector(".disk3");
 const disk3Array = [];
 
@@ -87,39 +87,37 @@ function dragLeave(e) {
 
 function dragDrop(e) {
     e.preventDefault();
-    console.log('drop');
-    
+    this.className
+
 }
-
-
-
-
 
 
 // //////////////////////////////////
 // Things I want to make now:
 
-// 1. Align Disks in Center of the column
+// 1. Align Disks in Center of the column     <=========     Done, through the Office Hour
 
-// 2. Algin Disk from the Bottom xx pixe of the Column
 
-// 3. When disk is Dropped into the other column, I want to remove that Disk DIV from that column to the other column
+// 2. Algin Disk from the Bottom xx pixe of the Column    <=========     Done, through the Office Hour
+
+// 3. When disk is Dropped into the other column, I want to remove that Disk DIV from that column to the other colum
+//    Will be done by using Creat & Delete class
 
 
 // for example,
 
-// <div class="column1">
-//     <div class="disk1" draggable="true"></div>
-// </div>
-// <div class="column2"></div>
-// <div class="column3"></div>
+{/* <div class="column1">
+    <div class="disk1" draggable="true"></div>
+</div>
+<div class="column2"></div>
+<div class="column3"></div>
 
-// to be 
+to be 
 
-// <div class="column1"></div>
-// <div class="column2">
-//     <div class="disk1" draggable="true"></div>
-// </div>
-// <div class="column3"></div>
+<div class="column1"></div>
+<div class="column2">
+    <div class="disk1" draggable="true"></div>
+</div>
+<div class="column3"></div> */}
 
 // /////////////////////////////////////
