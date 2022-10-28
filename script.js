@@ -24,17 +24,17 @@ const column1 = document.querySelector(".column1");
 const column2 = document.querySelector(".column2");
 const column3 = document.querySelector(".column3");
 
-const diskNum = document.getElementById("diskNum");
-const plusDisk = document.getElementById("plusDisk");
-const subDisk = document.getElementById("subDisk");
+var element = document.getElementById('diskNum');
+var value = parseInt(element.innerHTML);
+var countBest = document.getElementById('countBest');
+var bestNum = parseInt(countBest.innerHTML);
 
 function incrementButton() {
-    var element = document.getElementById('diskNum');
-    var value = element.innerHTML;
-
     if (value < 7) {
+        bestNum = bestNum + 2**value;
         ++value;
         document.getElementById('diskNum').innerHTML = value;
+        document.getElementById('countBest').innerHTML = bestNum;
     }
     else {
         alert("You can't add more!");
@@ -42,17 +42,16 @@ function incrementButton() {
 }
 
 function decrementButton() {
-    var element = document.getElementById('diskNum');
-    var value = element.innerHTML;
     if (value > 3) {
         --value;
+        bestNum = bestNum - 2**value;
         document.getElementById('diskNum').innerHTML = value;
+        document.getElementById('countBest').innerHTML = bestNum;
     }
     else {
         alert("You can't reduce more!");
     }
 }
-
 
 (function() {
     const disk1Array = [3,2,1];
@@ -142,13 +141,9 @@ function decrementButton() {
             if (dragged === disk1) {
                     disk3Array.push(disk1Array[disk1Array.length -1]);
                     disk1Array.pop();
-                    console.log(disk1Array);
-                    console.log(disk2Array);
-                    console.log(disk3Array);
-                    console.log('im console logging')
-                    if (disk3Array === [3,2,1]) {
-                        console.log("you did it")
-                    }
+                    // console.log(disk1Array);
+                    // console.log(disk2Array);
+                    // console.log(disk3Array);
                     dragged.parentNode.removeChild(dragged);
                     return event.target.prepend(dragged);
                 }
