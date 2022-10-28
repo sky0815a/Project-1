@@ -19,16 +19,19 @@ const disk2Array = [];
 const disk3 = document.querySelector(".disk3");
 const disk3Array = [];
 
+
 const column1 = document.querySelector(".column1");
 const column2 = document.querySelector(".column2");
 const column3 = document.querySelector(".column3");
 
+
+
 (function() {
+    
     var dragged, listener;
-
-    console.clear();
-
+    var countDrop = 0;
     dragged = null;
+    
 
     listener = document.addEventListener;
 
@@ -46,7 +49,10 @@ const column3 = document.querySelector(".column3");
     });
 
     listener("drop", (event) => {
-        // console.log("drop !");
+        console.log("drop !");
+        countDrop += 1;
+    
+        document.getElementById("count").innerHTML = countDrop;
         event.preventDefault();
 
 //////////////////////////////////////////////////////////////// 
@@ -55,16 +61,16 @@ const column3 = document.querySelector(".column3");
 
     // Declare where are we working at
     const currentTower = dragged.parentNode
-    console.log(currentTower);   
+    // console.log(currentTower);   
 
         if (event.target.className === "column2" && currentTower === column1) {
             // And if disk 1 can be pushed anywhere anytimes (because its the smallest one)
             if (dragged === disk1) {
                     disk2Array.push(disk1Array[disk1Array.length -1]);
                     disk1Array.pop();
-                    console.log(disk1Array);
-                    console.log(disk2Array);
-                    console.log(disk3Array);
+                    // console.log(disk1Array);
+                    // console.log(disk2Array);
+                    // console.log(disk3Array);
                     dragged.parentNode.removeChild(dragged);
                     return event.target.prepend(dragged);
                 }
@@ -75,9 +81,9 @@ const column3 = document.querySelector(".column3");
                 if (disk2Array[disk2Array.length -1] != 1) {
                     disk2Array.push(disk1Array[disk1Array.length -1]);
                     disk1Array.pop();
-                    console.log(disk1Array);
-                    console.log(disk2Array);
-                    console.log(disk3Array);
+                    // console.log(disk1Array);
+                    // console.log(disk2Array);
+                    // console.log(disk3Array);
                     dragged.parentNode.removeChild(dragged);
                     return event.target.prepend(dragged);
                 }
@@ -88,9 +94,9 @@ const column3 = document.querySelector(".column3");
                 if (!disk2Array.length) {
                     disk2Array.push(disk1Array[disk1Array.length -1]);
                     disk1Array.pop();
-                    console.log(disk1Array);
-                    console.log(disk2Array);
-                    console.log(disk3Array);
+                    // console.log(disk1Array);
+                    // console.log(disk2Array);
+                    // console.log(disk3Array);
                     dragged.parentNode.removeChild(dragged);
                     return event.target.prepend(dragged);
                 }
@@ -105,9 +111,9 @@ const column3 = document.querySelector(".column3");
             if (dragged === disk1) {
                     disk3Array.push(disk1Array[disk1Array.length -1]);
                     disk1Array.pop();
-                    console.log(disk1Array);
-                    console.log(disk2Array);
-                    console.log(disk3Array);
+                    // console.log(disk1Array);
+                    // console.log(disk2Array);
+                    // console.log(disk3Array);
                     dragged.parentNode.removeChild(dragged);
                     return event.target.prepend(dragged);
                 }
@@ -118,9 +124,9 @@ const column3 = document.querySelector(".column3");
                 if (disk3Array[disk3Array.length -1] != 1) {
                     disk3Array.push(disk1Array[disk1Array.length -1]);
                     disk1Array.pop();
-                    console.log(disk1Array);
-                    console.log(disk2Array);
-                    console.log(disk3Array);
+                    // console.log(disk1Array);
+                    // console.log(disk2Array);
+                    // console.log(disk3Array);
                     dragged.parentNode.removeChild(dragged);
                     return event.target.prepend(dragged);
                 }
@@ -131,9 +137,9 @@ const column3 = document.querySelector(".column3");
                 if (!disk3Array.length) {
                     disk3Array.push(disk1Array[disk1Array.length -1]);
                     disk1Array.pop();
-                    console.log(disk1Array);
-                    console.log(disk2Array);
-                    console.log(disk3Array);
+                    // console.log(disk1Array);
+                    // console.log(disk2Array);
+                    // console.log(disk3Array);
                     dragged.parentNode.removeChild(dragged);
                     return event.target.prepend(dragged);
                 }
@@ -149,9 +155,9 @@ const column3 = document.querySelector(".column3");
             if (dragged === disk1) {
                     disk3Array.push(disk2Array[disk2Array.length -1]);
                     disk2Array.pop();
-                    console.log(disk1Array);
-                    console.log(disk2Array);
-                    console.log(disk3Array);
+                    // console.log(disk1Array);
+                    // console.log(disk2Array);
+                    // console.log(disk3Array);
                     dragged.parentNode.removeChild(dragged);
                     return event.target.prepend(dragged);
                 }
@@ -162,9 +168,9 @@ const column3 = document.querySelector(".column3");
                 if (disk3Array[disk3Array.length -1] != 1) {
                     disk3Array.push(disk2Array[disk2Array.length -1]);
                     disk2Array.pop();
-                    console.log(disk1Array);
-                    console.log(disk2Array);
-                    console.log(disk3Array);
+                    // console.log(disk1Array);
+                    // console.log(disk2Array);
+                    // console.log(disk3Array);
                     dragged.parentNode.removeChild(dragged);
                     return event.target.prepend(dragged);
                 }
@@ -175,9 +181,9 @@ const column3 = document.querySelector(".column3");
                 if (!disk3Array.length) {
                     disk3Array.push(disk2Array[disk2Array.length -1]);
                     disk2Array.pop();
-                    console.log(disk1Array);
-                    console.log(disk2Array);
-                    console.log(disk3Array);
+                    // console.log(disk1Array);
+                    // console.log(disk2Array);
+                    // console.log(disk3Array);
                     dragged.parentNode.removeChild(dragged);
                     return event.target.prepend(dragged);
                 }
@@ -193,9 +199,9 @@ const column3 = document.querySelector(".column3");
             if (dragged === disk1) {
                 disk1Array.push(disk2Array[disk2Array.length -1]);
                 disk2Array.pop();
-                console.log(disk1Array);
-                console.log(disk2Array);
-                console.log(disk3Array);
+                // console.log(disk1Array);
+                // console.log(disk2Array);
+                // console.log(disk3Array);
                 dragged.parentNode.removeChild(dragged);
                 return event.target.prepend(dragged);
             }
@@ -206,9 +212,9 @@ const column3 = document.querySelector(".column3");
                 if (disk1Array[disk1Array.length -1] != 1) {
                     disk1Array.push(disk2Array[disk2Array.length -1]);
                     disk2Array.pop();
-                    console.log(disk1Array);
-                    console.log(disk2Array);
-                    console.log(disk3Array);
+                    // console.log(disk1Array);
+                    // console.log(disk2Array);
+                    // console.log(disk3Array);
                     dragged.parentNode.removeChild(dragged);
                     return event.target.prepend(dragged);
                 }
@@ -219,9 +225,9 @@ const column3 = document.querySelector(".column3");
                 if (!disk1Array.length) {
                     disk1Array.push(disk2Array[disk2Array.length -1]);
                     disk2Array.pop();
-                    console.log(disk1Array);
-                    console.log(disk2Array);
-                    console.log(disk3Array);
+                    // console.log(disk1Array);
+                    // console.log(disk2Array);
+                    // console.log(disk3Array);
                     dragged.parentNode.removeChild(dragged);
                     return event.target.prepend(dragged);
                 }
@@ -237,9 +243,9 @@ const column3 = document.querySelector(".column3");
             if (dragged === disk1) {
                 disk3Array.push(disk2Array[disk2Array.length -1]);
                 disk2Array.pop();
-                console.log(disk1Array);
-                console.log(disk2Array);
-                console.log(disk3Array);
+                // console.log(disk1Array);
+                // console.log(disk2Array);
+                // console.log(disk3Array);
                 dragged.parentNode.removeChild(dragged);
                 return event.target.prepend(dragged);
             }
@@ -250,9 +256,9 @@ const column3 = document.querySelector(".column3");
                 if (disk3Array[disk3Array.length -1] != 1) {
                     disk3Array.push(disk2Array[disk2Array.length -1]);
                     disk2Array.pop();
-                    console.log(disk1Array);
-                    console.log(disk2Array);
-                    console.log(disk3Array);
+                    // console.log(disk1Array);
+                    // console.log(disk2Array);
+                    // console.log(disk3Array);
                     dragged.parentNode.removeChild(dragged);
                     return event.target.prepend(dragged);
                 }
@@ -263,9 +269,9 @@ const column3 = document.querySelector(".column3");
                 if (!disk3Array.length) {
                     disk3Array.push(disk2Array[disk2Array.length -1]);
                     disk2Array.pop();
-                    console.log(disk1Array);
-                    console.log(disk2Array);
-                    console.log(disk3Array);
+                    // console.log(disk1Array);
+                    // console.log(disk2Array);
+                    // console.log(disk3Array);
                     dragged.parentNode.removeChild(dragged);
                     return event.target.prepend(dragged);
                 }
@@ -281,9 +287,9 @@ const column3 = document.querySelector(".column3");
             if (dragged === disk1) {
                 disk1Array.push(disk3Array[disk3Array.length -1]);
                 disk3Array.pop();
-                console.log(disk1Array);
-                console.log(disk2Array);
-                console.log(disk3Array);
+                // console.log(disk1Array);
+                // console.log(disk2Array);
+                // console.log(disk3Array);
                 dragged.parentNode.removeChild(dragged);
                 return event.target.prepend(dragged);
             }
@@ -294,9 +300,9 @@ const column3 = document.querySelector(".column3");
                 if (disk1Array[disk3Array.length -1] != 1) {
                     disk1Array.push(disk3Array[disk3Array.length -1]);
                     disk3Array.pop();
-                    console.log(disk1Array);
-                    console.log(disk2Array);
-                    console.log(disk3Array);
+                    // console.log(disk1Array);
+                    // console.log(disk2Array);
+                    // console.log(disk3Array);
                     dragged.parentNode.removeChild(dragged);
                     return event.target.prepend(dragged);
                 }
@@ -307,9 +313,9 @@ const column3 = document.querySelector(".column3");
                 if (!disk1Array.length) {
                     disk1Array.push(disk3Array[disk3Array.length -1]);
                     disk3Array.pop();
-                    console.log(disk1Array);
-                    console.log(disk2Array);
-                    console.log(disk3Array);
+                    // console.log(disk1Array);
+                    // console.log(disk2Array);
+                    // console.log(disk3Array);
                     dragged.parentNode.removeChild(dragged);
                     return event.target.prepend(dragged);
                 }
@@ -326,8 +332,9 @@ const column3 = document.querySelector(".column3");
             if (dragged === disk1) {
                 disk2Array.push(disk3Array[disk3Array.length -1]);
                 disk3Array.pop();
-                console.log(disk2Array);
-                console.log(disk3Array);
+                // console.log(disk1Array);
+                // console.log(disk2Array);
+                // console.log(disk3Array);
                 dragged.parentNode.removeChild(dragged);
                 return event.target.prepend(dragged);
             }
@@ -351,13 +358,14 @@ const column3 = document.querySelector(".column3");
                 if (!disk2Array.length) {
                 disk2Array.push(disk3Array[disk3Array.length -1]);
                 disk3Array.pop();
-                console.log(disk1Array);
-                console.log(disk2Array);
-                console.log(disk3Array);
+                // console.log(disk1Array);
+                // console.log(disk2Array);
+                // console.log(disk3Array);
                 dragged.parentNode.removeChild(dragged);
                 return event.target.prepend(dragged);
                 }
             }
         }
+        
     });
 }).call(this);
