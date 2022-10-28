@@ -14,18 +14,20 @@
         <!-- right nav -->
         <ul class="right-side">
             <li><div>Disk:</div></li>
-            <li><div>3</div></li>
-            <li><div>+</div></li>
-            <li><div>-</div></li>
+            <li><div id="diskNum">3</div></li>
+            <li><div class="plusDisk" onclick="incrementButton()">+</div></li>
+            <li><div class="subDisk" onclick="decrementButton()">-</div></li>
         </ul>
         <!-- middle nav -->
         <ul class="middle-side">
             <li><div>Move Counts:</div></li>
             <li><div id="count">0</div></li>
+            <li><div>Min Move Counts:</div></li>
+            <li><div id="count">7</div></li>
         </ul>
         <!-- left nav -->
         <ul class="left-side">
-            <li><div>Restart</div></li>
+            <li><div onClick="window.location.reload();">Restart</div></li>
             <li><div><a href="https://www.youtube.com/watch?v=_bWLwz_PquI&t=4s&ab_channel=TripleSGames">How to Play</a></div></li>
             <li><div><a href="https://en.wikipedia.org/wiki/Tower_of_Hanoi">About</a></div></li>
         </ul>
