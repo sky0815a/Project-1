@@ -79,7 +79,7 @@ function decrementButton() {
     });
 
     listener("drop", (event) => {
-        console.log("drop !");
+        // console.log("drop !");
         countDrop += 1;
         
         document.getElementById("count").innerHTML = countDrop;
